@@ -53,17 +53,11 @@ object Boot {
   }
 
   private def exercise22(): Unit = {
-    val iOrdered = new Function2[Int, Int, Boolean] {
-      def apply(a: Int, b: Int) = a < b
-    }
-    val iArr = Array(1,2,3,4,5)
-    println("Array[Int] sorted (should be true) --> " + isSorted(iArr, iOrdered))
+    val iStatement = "Array[Int] sorted ( should be true ) --> "
+    println(iStatement + isSorted(Array(1,2,3), (a: Int, b: Int) => a < b ))
 
-    val sOrdered = new Function2[String, String, Boolean] {
-      def apply(a: String, b: String) = a < b
-    }
-    val sArr = Array("a","k","c")
-    println("Array[String] sorted (should be false) --> " + isSorted(sArr, sOrdered))
+    val sStatement = "Array[String] sorted (should be false) --> "
+    println(sStatement + isSorted(Array("a","z","c"), (a: String, b: String) => a < b))
   }
 
 
