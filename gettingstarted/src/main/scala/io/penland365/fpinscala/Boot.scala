@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 2, gettingstarted")
-    runExercise("Exercise 2.2", exercise22)
+    runExercise("Exercise 2.5", exercise25)
   }
 
   private def fib(n: Int): Int = {
@@ -42,6 +42,15 @@ object Boot {
     loop(0, true)
   }
 
+  private def curry[A,B,C](f: (A,B) => C): A => (B => C) =
+    a => b => f(a,b)
+
+  private def uncurry[A,B,C](f: A => B => C): (A,B) => C =
+    (a,b) => f(a)(b)
+
+  private def compose[A,B,C](f: B => C, g: A => B): A => C =
+    (a: A) => f(g(a))
+
   private def runExercise(fnName: String, f: exercise): Unit = {
     println(fnName)
     f()
@@ -60,9 +69,20 @@ object Boot {
     println(sStatement + isSorted(Array("a","z","c"), (a: String, b: String) => a < b))
   }
 
+  private def exercise23(): Unit = {
+    println("Implement def curry[A,B,C](f: (A,B) => C): A=> (B => C)") 
+    println("There is only one implementation that compiles")
+  }
 
+  private def exercise24(): Unit = {
+    println("Implement def uncurry[A,B,C](f: A => B => C): (A,B) => C") 
+    println("There is only one implementation that compiles")
+  }
 
-
+  private def exercise25(): Unit = {
+    println("Implement def compose[A,B,C](f: B => C, g: A => B): A => C") 
+    println("There is only one implementation that compiles")
+  }
 
 
 
