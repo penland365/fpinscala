@@ -3,3 +3,8 @@
 target/*
 build/*
 sbt-launch.jar
+
+project/target/*
+
+gettingstarted/target/*
+datastructures/target/*
