@@ -29,7 +29,49 @@ object List {
     case Nil => sys.error("setHead on empty list")
     case _   => Cons(h, List.tail(l))
   }
+
+  def drop[A](l: List[A], n: Int): List[A] = {
+    if(n <= 0) l
+    else l match {
+      case Nil => Nil
+      case Cons(_,t) => drop(t, n-1)
+    }
+  }
+
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Cons(h,t) if f(h) => dropWhile(t, f)
+    case _ => l
+  }
+
+  def init0[A](l: List[A]): List[A] = l match {
+    case Nil => sys.error("init of empty list")
+    case Cons(_, Nil) => Nil
+    case Cons(h,t) => Cons(h, init0(t))
+  }
+
+  def init1[A](l: List[A]): List[A] = {
+    import collection.mutable.ListBuffer
+    val buf = new ListBuffer[A]
+    @annotation.tailrec
+    def loop(l: List[A]): List[A] = l match {
+      case Nil => sys.error("init of empty list")
+      case Cons(_, Nil) => List(buf.toList: _*)
+      case Cons(h,t) => buf += h; loop(t)
+    }
+
+    loop(l)
+  }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

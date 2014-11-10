@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.2", exercise33)
+    runExercise("Exercise 3.6", exercise36)
   }
 
   private def exercise31(): Unit = {
@@ -31,6 +31,24 @@ object Boot {
     println("List.setHead(4) --> " + List.setHead(4, l))
   }
 
+  private def exercise34(): Unit = {
+    val l = List(1,2,3,4,5)
+    println("Original list --> " + l)
+    println("List.drop(3) --> " + List.drop(l, 2))
+  }
+
+  private def exercise35(): Unit = {
+    val l = List(2,4,6,7,9)
+    println("Original list --> " + l)
+    println("List.dropWhile(n % 2 == 0) --> " + List.dropWhile(l, (n: Int) => n % 2 == 0))
+  }
+
+  private def exercise36(): Unit= {
+    val l = List(1,2,3,4,5)
+    println("Original list --> " + l)
+    println("List.init0 --> " + List.init0(l))
+    println("List.init1 --> " + List.init1(l))
+  }
 
   private def runExercise(fnName: String, f: exercise): Unit = {
     println(fnName)
