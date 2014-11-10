@@ -6,11 +6,9 @@ if [ $? -ne "0" ]
 then
 	tmux new-session -d -s $SESSION_NAME
 	tmux split-window -h -p 40
-	tmux split-window -v -p 50
 	tmux split-window -v -p 40
 	tmux send-keys -t 0 "vim" C-m
 	tmux send-keys -t 1 "./sbt" C-m
-	tmux send-keys -t 2 "./sbt console" C-m
 	tmux select-pane -t 0
 fi
 

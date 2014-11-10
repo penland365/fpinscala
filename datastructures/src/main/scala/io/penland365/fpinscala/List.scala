@@ -16,8 +16,20 @@ object List {
     case Cons(x,xs) => x * product(xs)
   }
 
-  def apply[A](as: A*): List[A] = 
+  def apply[A](as: A*): List[A] =
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
+
+  def tail[A](l: List[A]): List[A] = l match {
+    case Nil => sys.error("Nil list")
+    case Cons(_, x) => x
+  }
+
+  def setHead[A](h: A, l: List[A]): List[A] = l match {
+    case Nil => sys.error("setHead on empty list")
+    case _   => Cons(h, List.tail(l))
+  }
 }
+
+
 
