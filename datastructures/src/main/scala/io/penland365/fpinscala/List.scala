@@ -16,6 +16,15 @@ object List {
     case Cons(x,xs) => x * product(xs)
   }
 
+  def foldRight[A,B](as: List[A], z:B)(f: (A, B) => B): B = as match {
+    case Nil => z
+    case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+  }
+
+  def sum2(ns: List[Int]) = foldRight(ns, 0)((x,y) => x + y)
+
+  def product2(ns: List[Double]) = foldRight(ns, 1.0)(_ * _)
+
   def apply[A](as: A*): List[A] =
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
@@ -61,6 +70,8 @@ object List {
 
     loop(l)
   }
+
+  def length[A](as: List[A]): Int = foldRight(as, 0)((_, acc) => acc + 1)
 }
 
 

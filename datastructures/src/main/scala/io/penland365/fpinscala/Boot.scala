@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.6", exercise36)
+    runExercise("Exercise 3.9", exercise39)
   }
 
   private def exercise31(): Unit = {
@@ -43,11 +43,26 @@ object Boot {
     println("List.dropWhile(n % 2 == 0) --> " + List.dropWhile(l, (n: Int) => n % 2 == 0))
   }
 
-  private def exercise36(): Unit= {
+  private def exercise36(): Unit = {
     val l = List(1,2,3,4,5)
     println("Original list --> " + l)
     println("List.init0 --> " + List.init0(l))
     println("List.init1 --> " + List.init1(l))
+  }
+
+  private def exercise37(): Unit = {
+    println("No; before we call the function `f` we traverse the entire list")
+  }
+
+  private def exercise38(): Unit = {
+    val xs = List.foldRight(List(1,2,3), Nil:List[Int])(Cons(_, _))
+    println(xs)
+  }
+
+  private def exercise39(): Unit = {
+    val xs = List(1,2,3,4,5)
+    println("Original list ---> " + xs)
+    println("List.length --> " + List.length(xs))
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {
