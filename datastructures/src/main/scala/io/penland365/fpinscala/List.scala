@@ -82,6 +82,13 @@ object List {
   def sumFoldLeft(xs: List[Int]): Int = foldLeft(xs, 0)(_ + _)
   def productFoldLeft(xs: List[Double]): Double = foldLeft(xs, 1.0)(_ * _)
   def lengthFoldLeft[A](xs: List[A]): Int = foldLeft(xs, 0)((acc, _) => acc + 1)
+
+  def reverse[A](xs: List[A]): List[A] = foldLeft(xs, List[A]())((acc,h) => Cons(h, acc))
+
+  def foldLeftByFoldRight[A,B](xs: List[A], z: B)(f: (B, A) => B): B =
+    foldRight(xs, (b:B) => b)((a,g) => b => g(f(b,a)))(z)
+  def foldRightByFoldLeft[A,B](xs: List[A], z: B)(f: (A, B) => B): B =
+    foldLeft(reverse(xs), z)((b,a) => f(a,b))
 }
 
 
