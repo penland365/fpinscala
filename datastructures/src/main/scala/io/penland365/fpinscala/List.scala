@@ -58,6 +58,11 @@ object List {
     case _ => l
   }
 
+  def append[A](a1: List[A], a2: List[A]): List[A] = a1 match {
+    case Nil => a2
+    case Cons(h, t) => Cons(h, append(t, a2))
+  }
+
   def init0[A](l: List[A]): List[A] = l match {
     case Nil => sys.error("init of empty list")
     case Cons(_, Nil) => Nil
@@ -89,6 +94,9 @@ object List {
     foldRight(xs, (b:B) => b)((a,g) => b => g(f(b,a)))(z)
   def foldRightByFoldLeft[A,B](xs: List[A], z: B)(f: (A, B) => B): B =
     foldLeft(reverse(xs), z)((b,a) => f(a,b))
+
+  def appendByFoldRight[A](a1: List[A], a2: List[A]): List[A] =
+    foldRight(a1, a2)(Cons(_, _))
 }
 
 
