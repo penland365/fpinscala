@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.14", exercise314)
+    runExercise("Exercise 3.15", exercise315)
   }
 
   private def exercise31(): Unit = {
@@ -101,6 +101,18 @@ object Boot {
     println("a1 = " + a1)
     println("a2 = " + a2)
     println("List.appendByFoldRight(a1, a2) = " + List.appendByFoldRight(a1, a2))
+  }
+
+  private def exercise315(): Unit = {
+    val a1 = List(1,2,3)
+    val a2 = List(3,4,5)
+    val a3 = List(6,7,8)
+    val xs = List(a1, a2, a3)
+    println("a1 = " + a1)
+    println("a2 = " + a2)
+    println("a3 = " + a3)
+    println("xs = " + xs)
+    println("List.concatenate(xs) = " + List.concatenate(xs))
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {

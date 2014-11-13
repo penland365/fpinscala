@@ -97,6 +97,9 @@ object List {
 
   def appendByFoldRight[A](a1: List[A], a2: List[A]): List[A] =
     foldRight(a1, a2)(Cons(_, _))
+
+  def concatenate[A](xs: List[List[A]]): List[A] =
+    foldRight(xs, Nil:List[A])(append)
 }
 
 
