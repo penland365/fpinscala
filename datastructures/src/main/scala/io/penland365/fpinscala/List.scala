@@ -100,6 +100,18 @@ object List {
 
   def concatenate[A](xs: List[List[A]]): List[A] =
     foldRight(xs, Nil:List[A])(append)
+
+  def add1ToEachElem(x: List[Int]): List[Int] =
+    foldRight(x, Nil:List[Int])((h,t) => Cons(h + 1, t))
+
+  def transformListDoubleToString(xs: List[Double]): List[String] =
+    foldRight(xs, Nil:List[String])((h,t) => Cons(h.toString, t))
+
+  def map[A,B](xs: List[A])(f: A => B): List[B] =
+    foldRight(xs, Nil:List[B])((h,t) => Cons(f(h), t))
+
+  def filter[A](xs: List[A])(f: A => Boolean): List[A] =
+    foldRight(xs, Nil:List[A])((h,t) => if(f(h)) Cons(h,t) else t)
 }
 
 
