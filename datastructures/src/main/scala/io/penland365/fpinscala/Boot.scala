@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.19", exercise319)
+    runExercise("Exercise 3.23", exercise323)
   }
 
   private def exercise31(): Unit = {
@@ -132,6 +132,36 @@ object Boot {
     println("l = " + l)
     val func = (a: Int) => a % 2 == 0
     println("List.filter(l,(i: Int) => i % 2 ==0) = " + List.filter(l)(func))
+  }
+
+  private def exercise320(): Unit = {
+    val l = List(1,2,3)
+    println("l = " + l)
+    println("List.flatMap(l)(i => List(i,i)) = " + List.flatMap(l)(i => List(i,i)))
+  }
+
+  private def exercise321(): Unit = {
+    val l = List(1,2,3,4,5,6,7,8)
+    println("l = " + l)
+    val func = (a: Int) => a % 2 == 0
+    println("List.filterViaFlatMap(l,(i: Int) => i % 2 ==0) = " + List.filterViaFlatMap(l)(func))
+  }
+
+  private def exercise322(): Unit = {
+    val a1 = List(1,2,3)
+    val a2 = List(4,5,6)
+    println("a1 = " + a1)
+    println("a2 = " + a2)
+    println("List.addPairwise(a1, a2) = " + List.addPairwise(a1, a2))
+  }
+
+  private def exercise323(): Unit = {
+    val a1 = List(1,2,3)
+    val a2 = List(4,5,6)
+    println("a1 = " + a1)
+    println("a2 = " + a2)
+    val func = (a: Int, b: Int) => a + b
+    println("List.zipWith(a1, a2) = " + List.zipWith(a1, a2)(func))
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {

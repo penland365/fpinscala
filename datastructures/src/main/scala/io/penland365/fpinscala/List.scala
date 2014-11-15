@@ -112,6 +112,25 @@ object List {
 
   def filter[A](xs: List[A])(f: A => Boolean): List[A] =
     foldRight(xs, Nil:List[A])((h,t) => if(f(h)) Cons(h,t) else t)
+
+  def flatMap[A,B](xs: List[A])(f: A => List[B]): List[B] =
+    //foldRight(xs, Nil:List[B])((h,t) => append(f(h), t))
+    concatenate(map(xs)(f))
+
+  def filterViaFlatMap[A](xs: List[A])(f: A => Boolean): List[A] =
+    flatMap(xs)(a => if(f(a)) List(a) else Nil)
+
+  def addPairwise(a1: List[Int], a2: List[Int]): List[Int] = (a1, a2) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(h1,t1), Cons(h2,t2)) => Cons(h1+h2, addPairwise(t1, t2))
+  }
+
+  def zipWith[A,B,C](a: List[A], b: List[B])(f: (A,B) => C): List[C] = (a, b) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(h1,t1), Cons(h2,t2)) => Cons(f(h1, h2), zipWith(t1, t2)(f))
+  }
 }
 
 
