@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.23", exercise323)
+    runExercise("Exercise 3.24", exercise324)
   }
 
   private def exercise31(): Unit = {
@@ -162,6 +162,15 @@ object Boot {
     println("a2 = " + a2)
     val func = (a: Int, b: Int) => a + b
     println("List.zipWith(a1, a2) = " + List.zipWith(a1, a2)(func))
+  }
+
+  private def exercise324(): Unit = {
+    val l = List(1,2,3,4)
+    println("l = " + l)
+    println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(1,2)))
+    println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(2,3)))
+    println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(4)))
+    println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(4,5)))
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {
