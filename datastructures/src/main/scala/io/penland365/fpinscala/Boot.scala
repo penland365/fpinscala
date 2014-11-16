@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.24", exercise324)
+    runExercise("Exercise 3.26", exercise326)
   }
 
   private def exercise31(): Unit = {
@@ -171,6 +171,19 @@ object Boot {
     println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(2,3)))
     println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(4)))
     println("List.hasSubsequence(l, List(1,2)) = " + List.hasSubsequence(l, List(4,5)))
+  }
+
+  private def exercise325(): Unit = {
+    val t1 = Leaf("a")
+    val t2 = Leaf("b")
+    val b = Branch(t1, t2)
+    println("t = " + Tree.size(b))
+  }
+
+  private def exercise326(): Unit = {
+    val t = Branch(Branch(Leaf(1), Leaf(2)), Branch(Leaf(3), Leaf(4)))
+    println("t = " + t)
+    println("Tree.maximum(t) = " + Tree.maximum(t))
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {
