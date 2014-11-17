@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, datastructures")
-    runExercise("Exercise 3.26", exercise326)
+    runExercise("Exercise 3.28", exercise328)
   }
 
   private def exercise31(): Unit = {
@@ -184,6 +184,18 @@ object Boot {
     val t = Branch(Branch(Leaf(1), Leaf(2)), Branch(Leaf(3), Leaf(4)))
     println("t = " + t)
     println("Tree.maximum(t) = " + Tree.maximum(t))
+  }
+
+  private def exercise327(): Unit = {
+    val t = Branch(Branch(Leaf(1), Leaf(2)), Branch(Leaf(3), Leaf(4)))
+    println("t = " + t)
+    println("Tree.depth(t) = " + Tree.depth(t))
+  }
+
+  private def exercise328(): Unit = {
+    val t = Branch(Branch(Leaf(1), Leaf(2)), Branch(Leaf(3), Leaf(4)))
+    println("t = " + t)
+    println("Tree.map(t)(x => x + 1) = " + Tree.map(t)(x => x + 1))
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {
