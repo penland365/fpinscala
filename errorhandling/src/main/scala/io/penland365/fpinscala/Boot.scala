@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, errorhandling")
-    runExercise("Exercise 4.4", exercise44)
+    runExercise("Exercise 4.6", exercise46)
   }
 
   private def mean(xs: Seq[Double]): Option[Double] =
@@ -47,7 +47,18 @@ object Boot {
     println("Option.sequence(xs) = " + Option.sequence(xs))
   }
 
-  private def runExercise(fName: String, f: exercise): Unit = {
+  private def exercise46(): Unit = {
+    val right = Right(71) 
+
+    println("right = " + right)
+
+    println("right.map(x => x + 1) = " + right.map(x => x + 1))
+    println("right.flatMap(x => Either(x + 1)) = " + right.flatMap(x => Right(x + 1)))
+    //println("o.getOrElse(17) = " + o.getOrElse(17))
+    //urintln("n.getOrElse(17) = " + n.getOrElse(17))
+  }
+  
+    private def runExercise(fName: String, f: exercise): Unit = {
     println(fName)
     f()
   }
