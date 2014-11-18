@@ -1,5 +1,5 @@
 package boot
-
+ 
 object Boot {
 
   type exercise = () => Unit
@@ -83,9 +83,5 @@ object Boot {
     println("Implement def compose[A,B,C](f: B => C, g: A => B): A => C") 
     println("There is only one implementation that compiles")
   }
-
-
-
-
 
 }
