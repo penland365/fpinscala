@@ -5,7 +5,7 @@ object Boot {
   type exercise = () => Unit
 
   def main(args: Array[String]): Unit = {
-    println("This is Chapter 3, errorhandling")
+    println("This is Chapter 4, Handling errors without exeptions")
     runExercise("Exercise 4.8", exercise48)
   }
 
