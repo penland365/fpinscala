@@ -54,11 +54,9 @@ object Boot {
 
     println("right.map(x => x + 1) = " + right.map(x => x + 1))
     println("right.flatMap(x => Either(x + 1)) = " + right.flatMap(x => Right(x + 1)))
-    //println("o.getOrElse(17) = " + o.getOrElse(17))
-    //urintln("n.getOrElse(17) = " + n.getOrElse(17))
   }
-  
-    private def runExercise(fName: String, f: exercise): Unit = {
+
+  private def runExercise(fName: String, f: exercise): Unit = {
     println(fName)
     f()
   }
