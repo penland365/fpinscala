@@ -6,7 +6,7 @@ object Boot {
 
   def main(args: Array[String]): Unit = {
     println("This is Chapter 3, errorhandling")
-    runExercise("Exercise 4.6", exercise46)
+    runExercise("Exercise 4.8", exercise48)
   }
 
   private def mean(xs: Seq[Double]): Option[Double] =
@@ -54,6 +54,14 @@ object Boot {
 
     println("right.map(x => x + 1) = " + right.map(x => x + 1))
     println("right.flatMap(x => Either(x + 1)) = " + right.flatMap(x => Right(x + 1)))
+  }
+
+  private def exercise48(): Unit = {
+    var answer = "The simplest course would be to implement a new data type that lests us keep a list of errors in the data constructor, like so:\n\n"
+    answer += "trait Partial[+A,+B]\n"
+    answer += "case class Errors[+A](get: Seq[A]) extends Partial[A, Nothing]\n"
+    answer += "case class Success[+B](get: B) extends Partial[Nothing, B]"
+    println(answer)
   }
 
   private def runExercise(fName: String, f: exercise): Unit = {
