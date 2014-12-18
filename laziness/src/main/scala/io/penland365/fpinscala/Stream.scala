@@ -76,6 +76,14 @@ sealed trait Stream[+A] {
 
   def flatMapByFoldRight[B](f: A => Stream[B]): Stream[B] = 
     foldRight(Stream.empty[B])((h, t) => f(h).appendByFoldRight(t))
+
+  def constant[A](a: A): Stream[A] =
+    Stream.cons(a, constant(a))
+
+  def effecientConstant[A](a: A): Stream[A] = {
+    lazy val tail: Stream[A] = Cons(() => a, () => tail)
+    tail
+  }
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
