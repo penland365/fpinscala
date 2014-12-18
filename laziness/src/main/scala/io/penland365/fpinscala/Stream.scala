@@ -84,6 +84,11 @@ sealed trait Stream[+A] {
     lazy val tail: Stream[A] = Cons(() => a, () => tail)
     tail
   }
+
+  def from(n: Int): Stream[Int] = {
+    Stream.cons(n, from(n + 1))
+  }
+
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
