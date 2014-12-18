@@ -99,6 +99,22 @@ sealed trait Stream[+A] {
     case None        => Stream.empty
     case Some((h,s)) => Stream.cons(h, unfold(s)(f))
   }
+
+  val fibsByUnfold = {
+    def fib(x: (Int, Int)): Option[(Int, (Int, Int))] = Some(x._2, (x._2, x._1 + x._2))
+    unfold((0,1))(fib)
+  }
+
+  def fromByUnfold(n: Int): Stream[Int] = 
+    unfold(n)(n => Some((n, n+1)))
+
+  def constantByUnfold[A](a: A): Stream[A] = 
+    unfold(a)(_ => Some((a, a)))
+
+  def onesByUnfold: Stream[Int] =
+    unfold(1)(_ => Some((1, 1)))
+
+  def onesByConstantByUnfold: Stream[Int] = constantByUnfold(1)
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
