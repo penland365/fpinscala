@@ -89,6 +89,16 @@ sealed trait Stream[+A] {
     Stream.cons(n, from(n + 1))
   }
 
+  val fibs = {
+    def go(x: Int, y: Int): Stream[Int] =
+      Stream.cons(x, go(y, x + y))
+    go(0, 1)
+  }
+
+  def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = f(z) match {
+    case None        => Stream.empty
+    case Some((h,s)) => Stream.cons(h, unfold(s)(f))
+  }
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
