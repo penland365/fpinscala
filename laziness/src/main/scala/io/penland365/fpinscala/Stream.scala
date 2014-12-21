@@ -115,6 +115,27 @@ sealed trait Stream[+A] {
     unfold(1)(_ => Some((1, 1)))
 
   def onesByConstantByUnfold: Stream[Int] = constantByUnfold(1)
+
+  def mapByUnfold[B](f: A => B): Stream[B] = unfold(this) {
+    case Cons(h,t) => Some((f(h()), t()))
+    case _         => None
+  }
+
+  def takeByUnfold(n: Int): Stream[A] = unfold((this, n)){
+    case (Cons(h,t), n) if n == 1 => Some((h(), (Stream.empty, n - 1)))
+    case (Cons(h,t), n) if n > 0  => Some((h(), (t(), n - 1)))
+    case _                        => None
+  }
+
+  def takeWhileByUnfold(f: A => Boolean): Stream[A] = unfold(this){
+    case Cons(h,t) if f(h()) => Some((h(), t()))
+    case _                   => None
+  }
+
+  def zipWithByUnfold[B,C](s2: Stream[B])(f: (A,B) => C): Stream[C] = unfold((this, s2)) {
+    case (Cons(h0,t0), Cons(h1,t1)) => Some((f(h0(), h1()), (t0(), t1())))
+    case _                          => None
+  }
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
