@@ -1,4 +1,6 @@
-package boot
+package io.ptx.fpinscala.laziness
+
+import io.ptx.fpinscala._
 
 object Boot {
 

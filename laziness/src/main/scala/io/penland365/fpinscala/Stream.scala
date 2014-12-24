@@ -1,4 +1,4 @@
-package io.ptx.fpinscala
+package io.ptx.fpinscala.laziness
 
 sealed trait Stream[+A] {
 
@@ -156,7 +156,16 @@ sealed trait Stream[+A] {
     .takeWhile(!_._2.isEmpty)
     .forAll({case  (h0,h1) => h0 == h1})
 
+  def tails: Stream[Stream[A]] = unfold(this){ 
+    case Empty => None
+    case s     => Some((s, s drop 1))
+    } appendByFoldRight (Stream(Stream.empty))
 
+  def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = foldRight((z, Stream(z)))((a, p0) => {
+    lazy val p1 = p0
+    val b2 = f(a, p1._1)
+    (b2, Stream.cons(b2, p1._2))
+  })._2
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
