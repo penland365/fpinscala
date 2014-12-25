@@ -10,7 +10,9 @@ object Boot {
   }
 
   private def exercise61(): Unit = {
-    println("Exercise 6.1")
+    val rng = SimpleRNG(42)
+    val(n1, rng2) = rng.nextInt
+    println(n1)
   }
 
   private def runExercise(fnName: String, f: exercise): Unit = {
