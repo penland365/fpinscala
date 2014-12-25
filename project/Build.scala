@@ -10,4 +10,5 @@ object FPInScala extends Build {
    lazy val datastructures = Project(id = "datastructures", base = file("datastructures"))
    lazy val errorhandling = Project(id = "errorhandling", base = file("errorhandling"))
    lazy val laziness = Project(id = "laziness", base = file("laziness"))
+   lazy val state = Project(id = "state", base = file("state"))
 }
